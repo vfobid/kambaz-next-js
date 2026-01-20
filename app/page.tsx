@@ -1,4 +1,4 @@
 import { redirect } from "next/navigation";
-export default function Landing() {
-     redirect("/");
+export default function Kambaz() {
+     redirect("/account/signin");
 ;}
