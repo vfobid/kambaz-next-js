@@ -16,7 +16,7 @@ export default function AssignmentEditor() {
       <br />
       <table>
         <tr>
-          <td align="right" valign="top">
+          <td style={{ textAlign: "right", verticalAlign: "top" }}>
             <label htmlFor="wd-points">Points</label>
           </td>
           <td>
@@ -25,7 +25,7 @@ export default function AssignmentEditor() {
         </tr>
 
         <tr>
-          <td align="right" valign="top">
+          <td style={{ textAlign: "right", verticalAlign: "top" }}>
             <label htmlFor="wd-assignment-group">Assignment Group </label>
           </td>
           <td>
@@ -39,7 +39,7 @@ export default function AssignmentEditor() {
         </tr>
 
         <tr>
-          <td align="right" valign="top">
+          <td style={{ textAlign: "right", verticalAlign: "top" }}>
             <label htmlFor="wd-assignment-group">Display Grade as </label>
           </td>
           <td>
@@ -52,7 +52,7 @@ export default function AssignmentEditor() {
         </tr>
 
         <tr>
-          <td align="right" valign="top">
+          <td style={{ textAlign: "right", verticalAlign: "top" }}>
             <label htmlFor="wd-assignment-group">Submission Type</label>
           </td>
           <td>
@@ -64,9 +64,9 @@ export default function AssignmentEditor() {
         </tr>
 
         <tr>
-          <td align="right" valign="top">
+          <td style={{ textAlign: "right", verticalAlign: "top" }}>
             <label>Online Entry Options</label><br/>
-      <div align="left">
+      <div style={{ textAlign: "left" }}>
 <input type="checkbox" name="check-genre" id="wd-chkbox-comedy"/>
 <label htmlFor="wd-chkbox-comedy">Text Entry</label><br/>
 
@@ -86,7 +86,7 @@ export default function AssignmentEditor() {
         </tr>
 
         <tr>
-          <td align="right" valign="top">
+          <td style={{ textAlign: "right", verticalAlign: "top" }}>
             <label htmlFor="wd-points">Assign to</label>
           </td>
           <td>
