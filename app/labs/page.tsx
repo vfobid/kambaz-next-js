@@ -2,7 +2,7 @@ import Link from "next/link";
 export default function labs() {
  return (
    <div id="wd-labs">
-      <p> <b>Name: </b>Vanessa Fobid <b>Section: </b>02  <b>Source Code: </b> <a href="https://github.com/vfobid/kambaz-next-js" target="_blank"> link </a></p>
+      <p> <b>Name: </b>Vanessa Fobid <b>Section: </b>02  <b>GitHub Repo: </b> <a href="https://github.com/vfobid/kambaz-next-js" target="_blank" id="wd-github"> https://github.com/vfobid/kambaz-next-js </a></p>
      <h1>Labs</h1>
      <ul>
        <li>

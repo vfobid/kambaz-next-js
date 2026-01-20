@@ -1,7 +1,6 @@
 export default function Lab1() {
   return (
     <div id="wd-lab1"> 
-      <p> <b>Name: </b>Vanessa Fobid <b>Section: </b>02  <b>Source Code: </b> <a href="https://github.com/vfobid/kambaz-next-js" target="_blank"> link </a></p>
           <h2>Lab 1</h2>
       <h3>HTML Examples</h3>
       <div id="wd-h-tag">
