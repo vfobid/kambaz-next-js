@@ -4,23 +4,35 @@ import Link from "next/link";
 export default function TOC() {
  return (
    <Nav variant="pills">
-     <NavItem>
-       <NavLink href="/labs" as={Link}>Labs</NavLink>
-     </NavItem>
-     <NavItem>
-       <NavLink href="/labs/lab1" as={Link}>Lab 1</NavLink>
-     </NavItem>
-     <NavItem>
-       <NavLink href="/labs/lab2" as={Link}>Lab 2</NavLink>
-     </NavItem>
-     <NavItem>
-       <NavLink href="/labs/lab3" as={Link}>Lab 3</NavLink>
-     </NavItem>
-     <NavItem>
-       <NavLink href="/" as={Link}>Kambaz</NavLink>
-     </NavItem>
-     <NavItem>
-       <NavLink href="https://github.com/vfobid">My GitHub</NavLink>
-     </NavItem>
-   </Nav>
+      <Nav.Item>
+        <Nav.Link as={Link} href="/labs">Labs</Nav.Link>
+      </Nav.Item>
+
+      <Nav.Item>
+        <Nav.Link as={Link} href="/labs/lab1">Lab 1</Nav.Link>
+      </Nav.Item>
+
+      <Nav.Item>
+        <Nav.Link as={Link} href="/labs/lab2">Lab 2</Nav.Link>
+      </Nav.Item>
+
+      <Nav.Item>
+        <Nav.Link as={Link} href="/labs/lab3">Lab 3</Nav.Link>
+      </Nav.Item>
+
+      <Nav.Item>
+        <Nav.Link as={Link} href="/">Kambaz</Nav.Link>
+      </Nav.Item>
+
+      <Nav.Item>
+        <Nav.Link
+          id="wd-github"
+          href="https://github.com/vfobid"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          My GitHub
+        </Nav.Link>
+      </Nav.Item>
+    </Nav>
 );}

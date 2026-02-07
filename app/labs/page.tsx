@@ -1,5 +1,5 @@
 import Link from "next/link";
-export default function labs() {
+export default function Labs() {
  return (
    <div id="wd-labs">
       <p> <b>Name: </b>Vanessa Fobid <b>Section: </b>02  <b>GitHub Repo: </b> <a href="https://github.com/vfobid/kambaz-next-js" target="_blank" id="wd-github"> https://github.com/vfobid/kambaz-next-js </a></p>
