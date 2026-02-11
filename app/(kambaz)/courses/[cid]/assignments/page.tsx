@@ -41,8 +41,8 @@ export default function Assignments() {
               <AssignmentControlButtons />
             </div>
             <ul className="list-group rounded-0">
-              <li className="wd-assignment-list-item list-group-item p-3 ps-1 d-flex align-items-center">
-                <BsGripVertical className="me-2 fs-3" />
+              <li className="wd-assignment-list-item list-group-item p-3 ps-1 d-flex align-items-center wd-lesson">
+                <BsGripVertical className="me-2 fs-1" />
                 <div className="flex-grow-1">
                   <Link
                     href="/courses/1234/assignments/123"
@@ -59,8 +59,8 @@ export default function Assignments() {
                 <LessonControlButtons />
               </li>
 
-              <li className="wd-assignment-list-item list-group-item p-3 ps-1 d-flex align-items-center">
-                <BsGripVertical className="me-2 fs-3" />
+              <li className="wd-assignment-list-item list-group-item p-3 ps-1 d-flex align-items-center wd-lesson">
+                <BsGripVertical className="me-2 fs-1" />
                 <div className="flex-grow-1">
                   <Link
                     href="/courses/1234/assignments/124"
@@ -77,8 +77,8 @@ export default function Assignments() {
                 <LessonControlButtons />
               </li>
 
-              <li className="wd-assignment-list-item list-group-item p-3 ps-1 d-flex align-items-center">
-                <BsGripVertical className="me-2 fs-3" />
+              <li className="wd-assignment-list-item list-group-item p-3 ps-1 d-flex align-items-center wd-lesson">
+                <BsGripVertical className="me-2 fs-1" />
                 <div className="flex-grow-1">
                   <Link
                     href="/courses/1234/assignments/125"

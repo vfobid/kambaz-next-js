@@ -96,7 +96,13 @@ Instead of using IDs to refer to elements, you can use an element's CLASS attrib
 
       <Flex />
 
-      <MediaQueriesDemo />
+        <MediaQueriesDemo />
+
+        <br/>
+        
+        <a href="kambaz-next-js\app\labs\lab2\tailwind" >TAILWIND LINK</a>
+
+        <br/>
 
         <ReactIconsSampler />
         
