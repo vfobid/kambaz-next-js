@@ -60,8 +60,8 @@ export default function Assignments() {
                       </Link>
                       <br />
                       <span className="text-muted">
-                        <span className="text-danger">Multiple Modules</span> | <b>Not available until</b> {assignment.availableDate} at 12:00am |{" "}
-                        <b>Due</b> {assignment.dueDate} at 11:59pm | {assignment.points}pts
+                        <span className="text-danger">Multiple Modules</span> | <b>Not available until</b> Friday at 12:00am |{" "}
+                        <b>Due</b> Monday at 11:59pm | 10 pts
                       </span>
                     </div>
                     <LessonControlButtons />
