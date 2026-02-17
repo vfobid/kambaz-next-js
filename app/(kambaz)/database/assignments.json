@@ -1,11 +1,92 @@
 [
-  { "_id": "A101", "description" : "", "title": "Propulsion Assignment", "course": "RS101" },
-  { "_id": "A102", "description" : "", "title": "Combustion Analysis", "course": "RS101" },
-  { "_id": "A103", "description" : "", "title": "Nozzle Design Project", "course": "RS101" },
-  { "_id": "A201", "description" : "", "title": "Aerodynamics Quiz", "course": "RS102" },
-  { "_id": "A202", "description" : "", "title": "Flow Analysis", "course": "RS102" },
-  { "_id": "A203", "description" : "", "title": "Heating Analysis", "course": "RS102" },
-  { "_id": "A301", "description" : "", "title": "Structural Design Task", "course": "RS103" },
-  { "_id": "A302", "description" : "", "title": "Orbital Calculations", "course": "RS103" },
-  { "_id": "A303", "description" : "", "title": "Systems Engineering Exam", "course": "RS103" }
+  {
+    "_id": "A101",
+    "title": "Propulsion Assignment",
+    "course": "RS101",
+    "description": "Design and analyze a rocket propulsion system for a small satellite launch vehicle. Include thrust calculations, fuel efficiency analysis, and nozzle design specifications.",
+    "points": 100,
+    "dueDate": "2024-05-13",
+    "availableDate": "2024-05-06",
+    "assignmentGroup": "ASSIGNMENTS"
+  },
+  {
+    "_id": "A102",
+    "title": "Combustion Analysis",
+    "course": "RS101",
+    "description": "Analyze combustion efficiency in rocket engines. Calculate specific impulse, chamber pressure, and exhaust velocity for different propellant combinations.",
+    "points": 85,
+    "dueDate": "2024-05-20",
+    "availableDate": "2024-05-13",
+    "assignmentGroup": "ASSIGNMENTS"
+  },
+  {
+    "_id": "A103",
+    "title": "Nozzle Design Project",
+    "course": "RS101",
+    "description": "Design an optimal rocket nozzle using computational fluid dynamics. Submit CAD drawings and performance analysis report.",
+    "points": 120,
+    "dueDate": "2024-05-27",
+    "availableDate": "2024-05-20",
+    "assignmentGroup": "PROJECT"
+  },
+  {
+    "_id": "A201",
+    "title": "Aerodynamics Quiz",
+    "course": "RS102",
+    "description": "Comprehensive quiz covering subsonic and supersonic flow, boundary layer theory, and lift/drag calculations.",
+    "points": 50,
+    "dueDate": "2024-05-15",
+    "availableDate": "2024-05-08",
+    "assignmentGroup": "QUIZZES"
+  },
+  {
+    "_id": "A202",
+    "title": "Flow Analysis",
+    "course": "RS102",
+    "description": "Analyze subsonic and supersonic flow patterns around aircraft wings. Include Mach number calculations and shock wave analysis.",
+    "points": 90,
+    "dueDate": "2024-05-22",
+    "availableDate": "2024-05-15",
+    "assignmentGroup": "ASSIGNMENTS"
+  },
+  {
+    "_id": "A203",
+    "title": "Heating Analysis",
+    "course": "RS102",
+    "description": "Study aerodynamic heating effects on spacecraft during atmospheric reentry. Design thermal protection system.",
+    "points": 110,
+    "dueDate": "2024-06-01",
+    "availableDate": "2024-05-22",
+    "assignmentGroup": "ASSIGNMENTS"
+  },
+  {
+    "_id": "A301",
+    "title": "Structural Design Task",
+    "course": "RS103",
+    "description": "Design load-bearing spacecraft structural components. Perform stress analysis and material selection for primary structure.",
+    "points": 95,
+    "dueDate": "2024-05-18",
+    "availableDate": "2024-05-11",
+    "assignmentGroup": "ASSIGNMENTS"
+  },
+  {
+    "_id": "A302",
+    "title": "Orbital Calculations",
+    "course": "RS103",
+    "description": "Calculate orbital mechanics for satellite deployment. Include transfer orbits, delta-v requirements, and mission timeline.",
+    "points": 75,
+    "dueDate": "2024-05-25",
+    "availableDate": "2024-05-18",
+    "assignmentGroup": "QUIZZES"
+  },
+  {
+    "_id": "A303",
+    "title": "Systems Engineering Exam",
+    "course": "RS103",
+    "description": "Comprehensive final exam covering spacecraft systems integration, subsystem interfaces, and systems engineering processes.",
+    "points": 150,
+    "dueDate": "2024-06-05",
+    "availableDate": "2024-05-28",
+    "assignmentGroup": "EXAMS"
+  }
 ]
