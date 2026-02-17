@@ -1,8 +1,18 @@
 "use client";
 
 import { Form, Button } from "react-bootstrap";
+import { useParams } from "next/navigation";
+import Link from "next/link";
+import * as db from "../../../../database";
 
 export default function AssignmentEditor() {
+  const { cid, aid } = useParams();
+  const assignment = db.assignments.find((a) => a._id === aid);
+
+  if (!assignment) {
+    return <div>Assignment not found. Looking for ID: {aid}</div>;
+  }
+
   return (
     <div id="wd-assignments-editor" className="p-4">
       <Form>
@@ -11,7 +21,7 @@ export default function AssignmentEditor() {
           <Form.Control
             id="wd-name"
             type="text"
-            defaultValue="A1"
+            defaultValue={assignment.title}
           />
         </Form.Group>
 
@@ -21,18 +31,7 @@ export default function AssignmentEditor() {
             as="textarea"
             id="wd-description"
             rows={9}
-            defaultValue={`The assignment is available online
-
-Submit a link to the landing page of your Web application running on Netlify.
-
-The landing page should include the following:
-
-- Your full name and section
-- Links to each of the lab assignments
-- Link to the Kambaz application
-- Links to all relevant source code repositories
-
-The Kambaz application should include a link to navigate back to the landing page.`}
+            defaultValue={assignment.description}
           />
         </Form.Group>
 
@@ -42,7 +41,7 @@ The Kambaz application should include a link to navigate back to the landing pag
             <Form.Control
               id="wd-points"
               type="number"
-              defaultValue={100}
+              defaultValue={assignment.points}
             />
           </div>
         </div>
@@ -121,8 +120,8 @@ The Kambaz application should include a link to navigate back to the landing pag
               <Form.Label htmlFor="wd-due-date" className="fw-bold">Due</Form.Label>
               <Form.Control
                 id="wd-due-date"
-                type="datetime-local"
-                defaultValue="2024-05-13T23:59"
+                type="date"
+                defaultValue={assignment.dueDate}
               />
             </Form.Group>
 
@@ -132,8 +131,8 @@ The Kambaz application should include a link to navigate back to the landing pag
                   <Form.Label htmlFor="wd-available-from" className="fw-bold">Available from</Form.Label>
                   <Form.Control
                     id="wd-available-from"
-                    type="datetime-local"
-                    defaultValue="2024-05-06T00:00"
+                    type="date"
+                    defaultValue={assignment.availableDate}
                   />
                 </Form.Group>
               </div>
@@ -154,8 +153,12 @@ The Kambaz application should include a link to navigate back to the landing pag
         <hr />
 
         <div className="d-flex justify-content-end gap-2">
-          <Button variant="secondary">Cancel</Button>
-          <Button variant="danger">Save</Button>
+          <Link href={`/courses/${cid}/assignments`}>
+            <Button variant="secondary">Cancel</Button>
+          </Link>
+          <Link href={`/courses/${cid}/assignments`}>
+            <Button variant="danger">Save</Button>
+          </Link>
         </div>
       </Form>
     </div>

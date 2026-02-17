@@ -7,8 +7,13 @@ import { FaSearch } from "react-icons/fa";
 import { Button, InputGroup, FormControl } from "react-bootstrap";
 import AssignmentControlButtons from "./AssignmentControlButtons";
 import LessonControlButtons from "../modules/LessonControlButtons";
+import { useParams } from "next/navigation";
+import * as db from "../../../database";
 
 export default function Assignments() {
+  const { cid } = useParams();
+  const assignments = db.assignments;
+
   return (
     <div>
       <div id="wd-assignments">
@@ -41,59 +46,27 @@ export default function Assignments() {
               <AssignmentControlButtons />
             </div>
             <ul className="list-group rounded-0">
-              <li className="wd-assignment-list-item list-group-item p-3 ps-1 d-flex align-items-center wd-lesson">
-                <BsGripVertical className="me-2 fs-1" />
-                <div className="flex-grow-1">
-                  <Link
-                    href="/courses/1234/assignments/123"
-                    className="wd-assignment-link text-dark text-decoration-none fw-bold"
-                  >
-                    A1 - ENV + HTML
-                  </Link>
-                  <br />
-                  <span className="text-secondary">
-                    Multiple Modules | <b>Not available until</b> May 6 at 12:00am |{" "}
-                    <b>Due</b> May 13 at 11:59pm | 100pts
-                  </span>
-                </div>
-                <LessonControlButtons />
-              </li>
-
-              <li className="wd-assignment-list-item list-group-item p-3 ps-1 d-flex align-items-center wd-lesson">
-                <BsGripVertical className="me-2 fs-1" />
-                <div className="flex-grow-1">
-                  <Link
-                    href="/courses/1234/assignments/124"
-                    className="wd-assignment-link text-dark text-decoration-none fw-bold"
-                  >
-                    A2 - CSS + BOOTSTRAP
-                  </Link>
-                  <br />
-                  <span className="text-muted">
-                    Multiple Modules | <b>Not available until</b> May 13 at 12:00am |{" "}
-                    <b>Due</b> May 20 at 11:59pm | 100pts
-                  </span>
-                </div>
-                <LessonControlButtons />
-              </li>
-
-              <li className="wd-assignment-list-item list-group-item p-3 ps-1 d-flex align-items-center wd-lesson">
-                <BsGripVertical className="me-2 fs-1" />
-                <div className="flex-grow-1">
-                  <Link
-                    href="/courses/1234/assignments/125"
-                    className="wd-assignment-link text-dark text-decoration-none fw-bold"
-                  >
-                    A3 - JAVASCRIPT + REACT
-                  </Link>
-                  <br />
-                  <span className="text-muted">
-                    Multiple Modules | <b>Not available until</b> May 20 at 12:00am |{" "}
-                    <b>Due</b> May 27 at 11:59pm | 100pts
-                  </span>
-                </div>
-                <LessonControlButtons />
-              </li>
+              {assignments
+                .filter((assignment) => assignment.course === cid)
+                .map((assignment) => (
+                  <li key={assignment._id} className="wd-assignment-list-item list-group-item p-3 ps-1 d-flex align-items-center wd-lesson">
+                    <BsGripVertical className="me-2 fs-1" />
+                    <div className="flex-grow-1">
+                      <Link
+                        href={`/courses/${cid}/assignments/${assignment._id}`}
+                        className="wd-assignment-link text-dark text-decoration-none fw-bold"
+                      >
+                        {assignment.title}
+                      </Link>
+                      <br />
+                      <span className="text-muted">
+                        <span className="text-danger">Multiple Modules</span> | <b>Not available until</b> {assignment.availableDate} at 12:00am |{" "}
+                        <b>Due</b> {assignment.dueDate} at 11:59pm | {assignment.points}pts
+                      </span>
+                    </div>
+                    <LessonControlButtons />
+                  </li>
+                ))}
             </ul>
           </li>
         </ul>
