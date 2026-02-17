@@ -31,7 +31,7 @@ export default function AssignmentEditor() {
             as="textarea"
             id="wd-description"
             rows={9}
-            defaultValue={assignment.description}
+            defaultValue=""
           />
         </Form.Group>
 
@@ -41,7 +41,7 @@ export default function AssignmentEditor() {
             <Form.Control
               id="wd-points"
               type="number"
-              defaultValue={assignment.points}
+              defaultValue=""
             />
           </div>
         </div>
@@ -121,7 +121,7 @@ export default function AssignmentEditor() {
               <Form.Control
                 id="wd-due-date"
                 type="date"
-                defaultValue={assignment.dueDate}
+                defaultValue=""
               />
             </Form.Group>
 
@@ -132,7 +132,7 @@ export default function AssignmentEditor() {
                   <Form.Control
                     id="wd-available-from"
                     type="date"
-                    defaultValue={assignment.availableDate}
+                    defaultValue=""
                   />
                 </Form.Group>
               </div>
