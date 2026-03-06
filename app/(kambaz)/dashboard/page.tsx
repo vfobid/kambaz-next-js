@@ -41,7 +41,7 @@ export default function Dashboard() {
 
   const isEnrolled = (courseId: string) => {
     return enrollments.some(
-      (e: any) => e.user === currentUser?._id && e.course === courseId,
+      (e: any) => e.user === (currentUser as any)?._id && e.course === courseId,
     );
   };
 
