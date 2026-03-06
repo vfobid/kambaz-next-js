@@ -1,4 +1,17 @@
-[
+[{
+    "_id": "100",
+    "username": "vanessa",
+    "password": "pass",
+    "firstName": "Vanessa",
+    "lastName": "Fobid",
+    "email": "vfobid@gmail.com",
+    "dob": "2006-01-19T00:00:00.000Z",
+    "role": "FACULTY",
+    "loginId": "002234561S",
+    "section": "S101",
+    "lastActivity": "2020-10-01",
+    "totalActivity": "10:21:32"
+  },
   {
     "_id": "123",
     "username": "iron_man",

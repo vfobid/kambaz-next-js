@@ -1,18 +1,46 @@
 "use client";
-
+import { useState } from "react";
 import Link from "next/link";
 import { BsGripVertical } from "react-icons/bs";
 import { FaPlus } from "react-icons/fa6";
-import { FaSearch } from "react-icons/fa";
-import { Button, InputGroup, FormControl } from "react-bootstrap";
+import { FaSearch, FaTrash } from "react-icons/fa";
+import { Button, InputGroup, FormControl, Modal } from "react-bootstrap";
 import AssignmentControlButtons from "./AssignmentControlButtons";
 import LessonControlButtons from "../modules/LessonControlButtons";
 import { useParams } from "next/navigation";
-import * as db from "../../../database";
+import { useSelector, useDispatch } from "react-redux";
+import { deleteAssignment } from "./reducer";
+import { RootState } from "../../../store";
 
 export default function Assignments() {
   const { cid } = useParams();
-  const assignments = db.assignments;
+  const { assignments } = useSelector(
+    (state: RootState) => state.assignmentsReducer,
+  );
+  const dispatch = useDispatch();
+
+  const [showDeleteDialog, setShowDeleteDialog] = useState(false);
+  const [assignmentToDelete, setAssignmentToDelete] = useState<string | null>(
+    null,
+  );
+
+  const handleDeleteClick = (assignmentId: string) => {
+    setAssignmentToDelete(assignmentId);
+    setShowDeleteDialog(true);
+  };
+
+  const confirmDelete = () => {
+    if (assignmentToDelete) {
+      dispatch(deleteAssignment(assignmentToDelete));
+    }
+    setShowDeleteDialog(false);
+    setAssignmentToDelete(null);
+  };
+
+  const cancelDelete = () => {
+    setShowDeleteDialog(false);
+    setAssignmentToDelete(null);
+  };
 
   return (
     <div>
@@ -28,12 +56,19 @@ export default function Assignments() {
             />
           </InputGroup>
           <div>
-            <Button variant="secondary" size="lg" className="me-2" id="wd-add-assignment-group">
+            <Button
+              variant="secondary"
+              size="lg"
+              className="me-2"
+              id="wd-add-assignment-group"
+            >
               <FaPlus className="me-1" /> Group
             </Button>
-            <Button variant="danger" size="lg" id="wd-add-assignment">
-              <FaPlus className="me-1" /> Assignment
-            </Button>
+            <Link href={`/courses/${cid}/assignments/new`}>
+              <Button variant="danger" size="lg" id="wd-add-assignment">
+                <FaPlus className="me-1" /> Assignment
+              </Button>
+            </Link>
           </div>
         </div>
 
@@ -47,9 +82,12 @@ export default function Assignments() {
             </div>
             <ul className="list-group rounded-0">
               {assignments
-                .filter((assignment) => assignment.course === cid)
-                .map((assignment) => (
-                  <li key={assignment._id} className="wd-assignment-list-item list-group-item p-3 ps-1 d-flex align-items-center wd-lesson">
+                .filter((assignment: any) => assignment.course === cid)
+                .map((assignment: any) => (
+                  <li
+                    key={assignment._id}
+                    className="wd-assignment-list-item list-group-item p-3 ps-1 d-flex align-items-center wd-lesson"
+                  >
                     <BsGripVertical className="me-2 fs-1" />
                     <div className="flex-grow-1">
                       <Link
@@ -60,10 +98,18 @@ export default function Assignments() {
                       </Link>
                       <br />
                       <span className="text-muted">
-                        <span className="text-danger">Multiple Modules</span> | <b>Not available until</b> Friday at 12:00am |{" "}
-                        <b>Due</b> Monday at 11:59pm | 10 pts
+                        <span className="text-danger">Multiple Modules</span> |{" "}
+                        <b>Not available until</b>{" "}
+                        {assignment.availableDate || "TBD"} | <b>Due</b>{" "}
+                        {assignment.dueDate || "TBD"} |{" "}
+                        {assignment.points || 100} pts
                       </span>
                     </div>
+                    <FaTrash
+                      className="text-danger me-3"
+                      style={{ cursor: "pointer" }}
+                      onClick={() => handleDeleteClick(assignment._id)}
+                    />
                     <LessonControlButtons />
                   </li>
                 ))}
@@ -71,6 +117,23 @@ export default function Assignments() {
           </li>
         </ul>
       </div>
+
+      <Modal show={showDeleteDialog} onHide={cancelDelete}>
+        <Modal.Header closeButton>
+          <Modal.Title>Delete Assignment</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          Are you sure you want to remove this assignment?
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={cancelDelete}>
+            No
+          </Button>
+          <Button variant="danger" onClick={confirmDelete}>
+            Yes
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 }
