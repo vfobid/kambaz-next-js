@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { BsGripVertical } from "react-icons/bs";
 import { FaPlus } from "react-icons/fa6";
@@ -9,8 +9,9 @@ import AssignmentControlButtons from "./AssignmentControlButtons";
 import LessonControlButtons from "../modules/LessonControlButtons";
 import { useParams } from "next/navigation";
 import { useSelector, useDispatch } from "react-redux";
-import { deleteAssignment } from "./reducer";
+import { setAssignments, deleteAssignment } from "./reducer";
 import { RootState } from "../../../store";
+import * as client from "./client";
 
 export default function Assignments() {
   const { cid } = useParams();
@@ -24,13 +25,19 @@ export default function Assignments() {
     null,
   );
 
+  const fetchAssignments = async () => {
+    const data = await client.findAssignmentsForCourse(cid as string);
+    dispatch(setAssignments(data));
+  };
+
   const handleDeleteClick = (assignmentId: string) => {
     setAssignmentToDelete(assignmentId);
     setShowDeleteDialog(true);
   };
 
-  const confirmDelete = () => {
+  const confirmDelete = async () => {
     if (assignmentToDelete) {
+      await client.deleteAssignment(assignmentToDelete);
       dispatch(deleteAssignment(assignmentToDelete));
     }
     setShowDeleteDialog(false);
@@ -41,6 +48,13 @@ export default function Assignments() {
     setShowDeleteDialog(false);
     setAssignmentToDelete(null);
   };
+
+  useEffect(() => {
+    const load = async () => {
+      await fetchAssignments();
+    };
+    load();
+  }, []);
 
   return (
     <div>
@@ -71,7 +85,6 @@ export default function Assignments() {
             </Link>
           </div>
         </div>
-
         <ul className="list-group rounded-0">
           <li className="list-group-item p-0 mb-5 fs-5 border-gray">
             <div className="wd-title p-3 ps-2 bg-secondary d-flex align-items-center">
@@ -81,43 +94,40 @@ export default function Assignments() {
               <AssignmentControlButtons />
             </div>
             <ul className="list-group rounded-0">
-              {assignments
-                .filter((assignment: any) => assignment.course === cid)
-                .map((assignment: any) => (
-                  <li
-                    key={assignment._id}
-                    className="wd-assignment-list-item list-group-item p-3 ps-1 d-flex align-items-center wd-lesson"
-                  >
-                    <BsGripVertical className="me-2 fs-1" />
-                    <div className="flex-grow-1">
-                      <Link
-                        href={`/courses/${cid}/assignments/${assignment._id}`}
-                        className="wd-assignment-link text-dark text-decoration-none fw-bold"
-                      >
-                        {assignment.title}
-                      </Link>
-                      <br />
-                      <span className="text-muted">
-                        <span className="text-danger">Multiple Modules</span> |{" "}
-                        <b>Not available until</b>{" "}
-                        {assignment.availableDate || "TBD"} | <b>Due</b>{" "}
-                        {assignment.dueDate || "TBD"} |{" "}
-                        {assignment.points || 100} pts
-                      </span>
-                    </div>
-                    <FaTrash
-                      className="text-danger me-3"
-                      style={{ cursor: "pointer" }}
-                      onClick={() => handleDeleteClick(assignment._id)}
-                    />
-                    <LessonControlButtons />
-                  </li>
-                ))}
+              {assignments.map((assignment: any) => (
+                <li
+                  key={assignment._id}
+                  className="wd-assignment-list-item list-group-item p-3 ps-1 d-flex align-items-center wd-lesson"
+                >
+                  <BsGripVertical className="me-2 fs-1" />
+                  <div className="flex-grow-1">
+                    <Link
+                      href={`/courses/${cid}/assignments/${assignment._id}`}
+                      className="wd-assignment-link text-dark text-decoration-none fw-bold"
+                    >
+                      {assignment.title}
+                    </Link>
+                    <br />
+                    <span className="text-muted">
+                      <span className="text-danger">Multiple Modules</span> |{" "}
+                      <b>Not available until</b>{" "}
+                      {assignment.availableDate || "TBD"} | <b>Due</b>{" "}
+                      {assignment.dueDate || "TBD"} | {assignment.points || 100}{" "}
+                      pts
+                    </span>
+                  </div>
+                  <FaTrash
+                    className="text-danger me-3"
+                    style={{ cursor: "pointer" }}
+                    onClick={() => handleDeleteClick(assignment._id)}
+                  />
+                  <LessonControlButtons />
+                </li>
+              ))}
             </ul>
           </li>
         </ul>
       </div>
-
       <Modal show={showDeleteDialog} onHide={cancelDelete}>
         <Modal.Header closeButton>
           <Modal.Title>Delete Assignment</Modal.Title>

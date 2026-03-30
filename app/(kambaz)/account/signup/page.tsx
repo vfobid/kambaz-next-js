@@ -1,56 +1,45 @@
 "use client";
-
 import Link from "next/link";
-import { Form, Button } from "react-bootstrap";
+import { useRouter } from "next/navigation";
+import { setCurrentUser } from "../reducer";
+import { useDispatch } from "react-redux";
+import { useState } from "react";
+import { FormControl } from "react-bootstrap";
+import * as client from "../client";
 
 export default function Signup() {
+  const [user, setUser] = useState<any>({});
+  const dispatch = useDispatch();
+  const router = useRouter();
+  const signup = async () => {
+    const currentUser = await client.signup(user);
+    dispatch(setCurrentUser(currentUser));
+    router.push("/account/profile");
+  };
   return (
-    <div id="wd-signup-screen" className="p-4" style={{ maxWidth: "400px" }}>
-      <h3>Sign up</h3>
-      <Form>
-        <Form.Group className="mb-3">
-          <Form.Control
-            id="wd-username"
-            className="wd-username"
-            type="text"
-            placeholder="username"
-            defaultValue="vanessa"
-          />
-        </Form.Group>
-
-        <Form.Group className="mb-3">
-          <Form.Control
-            id="wd-password"
-            className="wd-password"
-            type="password"
-            placeholder="password"
-            defaultValue="mypassword"
-          />
-        </Form.Group>
-
-        <Form.Group className="mb-3">
-          <Form.Control
-            id="wd-password-verify"
-            className="wd-password-verify"
-            type="password"
-            placeholder="verify password"
-            defaultValue="mypassword"
-          />
-        </Form.Group>
-
-        <Link href="/account/profile" passHref legacyBehavior>
-          <Button
-            as="a"
-            variant="primary"
-            className="w-100 mb-2"
-            id="wd-signup-btn"
-          >
-            Sign up
-          </Button>
-        </Link>
-      </Form>
-
-      <Link href="/account/signin" id="wd-signin-link">
+    <div className="wd-signup-screen">
+      <h1>Sign up</h1>
+      <FormControl
+        value={user.username}
+        onChange={(e) => setUser({ ...user, username: e.target.value })}
+        className="wd-username mb-2"
+        placeholder="username"
+      />
+      <FormControl
+        value={user.password}
+        onChange={(e) => setUser({ ...user, password: e.target.value })}
+        className="wd-password mb-2"
+        placeholder="password"
+        type="password"
+      />
+      <button
+        onClick={signup}
+        className="wd-signup-btn btn btn-primary mb-2 w-100"
+      >
+        Sign up
+      </button>
+      <br />
+      <Link href="/account/signin" className="wd-signin-link">
         Sign in
       </Link>
     </div>

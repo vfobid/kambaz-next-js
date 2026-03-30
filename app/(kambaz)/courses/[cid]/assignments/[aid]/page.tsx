@@ -1,22 +1,17 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Form, Button } from "react-bootstrap";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addAssignment, updateAssignment } from "../reducer";
-import { RootState } from "../../../../store";
+import * as client from "../client";
 
 export default function AssignmentEditor() {
   const { cid, aid } = useParams();
   const dispatch = useDispatch();
   const router = useRouter();
-  const { assignments } = useSelector(
-    (state: RootState) => state.assignmentsReducer,
-  );
-
   const isNew = aid === "new";
-  const existingAssignment = assignments.find((a: any) => a._id === aid);
 
   const [assignment, setAssignment] = useState<any>(
     isNew
@@ -28,18 +23,33 @@ export default function AssignmentEditor() {
           availableDate: "2024-05-06",
           course: cid,
         }
-      : { ...existingAssignment },
+      : null,
   );
 
-  if (!isNew && !existingAssignment) {
-    return <div>Assignment not found. Looking for ID: {aid}</div>;
+  useEffect(() => {
+    if (!isNew) {
+      const load = async () => {
+        const data = await client.findAssignmentById(aid as string);
+        setAssignment(data);
+      };
+      load();
+    }
+  }, [aid]);
+
+  if (!isNew && !assignment) {
+    return <div>Loading...</div>;
   }
 
-  const handleSave = () => {
+  const handleSave = async () => {
     if (isNew) {
-      dispatch(addAssignment(assignment));
+      const newAssignment = await client.createAssignment(
+        cid as string,
+        assignment,
+      );
+      dispatch(addAssignment(newAssignment));
     } else {
-      dispatch(updateAssignment(assignment));
+      const updated = await client.updateAssignment(assignment);
+      dispatch(updateAssignment(updated));
     }
     router.push(`/courses/${cid}/assignments`);
   };
@@ -58,7 +68,6 @@ export default function AssignmentEditor() {
             }
           />
         </Form.Group>
-
         <Form.Group className="mb-3">
           <Form.Label htmlFor="wd-description">Description</Form.Label>
           <Form.Control
@@ -71,7 +80,6 @@ export default function AssignmentEditor() {
             }
           />
         </Form.Group>
-
         <div className="row mb-3">
           <div className="col-md-3">
             <Form.Label htmlFor="wd-points">Points</Form.Label>
@@ -88,7 +96,6 @@ export default function AssignmentEditor() {
             />
           </div>
         </div>
-
         <Form.Group className="mb-3">
           <Form.Label htmlFor="wd-group">Assignment Group</Form.Label>
           <Form.Select id="wd-group">
@@ -98,7 +105,6 @@ export default function AssignmentEditor() {
             <option value="PROJECT">PROJECT</option>
           </Form.Select>
         </Form.Group>
-
         <Form.Group className="mb-3">
           <Form.Label htmlFor="wd-display-grade-as">
             Display Grade as
@@ -109,7 +115,6 @@ export default function AssignmentEditor() {
             <option value="Letter">Letter Grade</option>
           </Form.Select>
         </Form.Group>
-
         <Form.Group className="mb-3">
           <Form.Label htmlFor="wd-submission-type">Submission Type</Form.Label>
           <div className="border rounded p-3">
@@ -118,7 +123,6 @@ export default function AssignmentEditor() {
               <option value="Paper">Paper</option>
               <option value="External">External Tool</option>
             </Form.Select>
-
             <div className="mb-2 fw-bold">Online Entry Options</div>
             <Form.Check type="checkbox" id="wd-text-entry" label="Text Entry" />
             <Form.Check
@@ -144,7 +148,6 @@ export default function AssignmentEditor() {
             />
           </div>
         </Form.Group>
-
         <Form.Group className="mb-3">
           <Form.Label>Assign</Form.Label>
           <div className="border rounded p-3">
@@ -158,7 +161,6 @@ export default function AssignmentEditor() {
                 defaultValue="Everyone"
               />
             </Form.Group>
-
             <Form.Group className="mb-3">
               <Form.Label htmlFor="wd-due-date" className="fw-bold">
                 Due
@@ -172,7 +174,6 @@ export default function AssignmentEditor() {
                 }
               />
             </Form.Group>
-
             <div className="row">
               <div className="col-md-6">
                 <Form.Group className="mb-3">
@@ -207,9 +208,7 @@ export default function AssignmentEditor() {
             </div>
           </div>
         </Form.Group>
-
         <hr />
-
         <div className="d-flex justify-content-end gap-2">
           <Link href={`/courses/${cid}/assignments`}>
             <Button variant="secondary">Cancel</Button>
