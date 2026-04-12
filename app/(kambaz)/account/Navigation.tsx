@@ -25,7 +25,7 @@ export default function AccountNavigation() {
           </NavLink>
         </NavItem>
       ))}
-      {currentUser && currentUser.role === "ADMIN" && (
+      {currentUser && (currentUser as { role: string }).role === "ADMIN" && (
         <NavItem>
           <NavLink
             as={Link}
