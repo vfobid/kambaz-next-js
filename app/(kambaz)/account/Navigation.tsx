@@ -11,6 +11,7 @@ export default function AccountNavigation() {
   );
   const links = currentUser ? ["profile"] : ["signin", "signup"];
   const pathname = usePathname();
+
   return (
     <Nav variant="pills" className="flex-column">
       {links.map((link) => (
@@ -24,6 +25,17 @@ export default function AccountNavigation() {
           </NavLink>
         </NavItem>
       ))}
+      {currentUser && currentUser.role === "ADMIN" && (
+        <NavItem>
+          <NavLink
+            as={Link}
+            href={`/account/users`}
+            active={pathname.endsWith("users")}
+          >
+            Users
+          </NavLink>
+        </NavItem>
+      )}
     </Nav>
   );
 }
