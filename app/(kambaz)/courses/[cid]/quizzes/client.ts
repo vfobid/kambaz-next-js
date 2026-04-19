@@ -34,7 +34,7 @@ export const getLastAttempt = async (quizId: string) => {
   return data;
 };
 
-export const submitAttempt = async (quizId: string, answers: Answer[]) => {
+export const submitAttempt = async (quizId: string, answers: { questionId: string; answer: string | boolean }[]) => {
   const { data } = await axios.post(`${QUIZZES_API}/${quizId}/attempts`, { answers }, { withCredentials: true });
   return data;
 };
