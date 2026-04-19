@@ -1,0 +1,149 @@
+
+  [{
+    "_id": "Q101",
+    "title": "Rocket Propulsion Quiz",
+    "course": "RS101",
+    "description": "Test your knowledge of rocket propulsion fundamentals.",
+    "quizType": "GRADED_QUIZ",
+    "points": 30,
+    "assignmentGroup": "QUIZZES",
+    "shuffleAnswers": true,
+    "timeLimit": 20,
+    "multipleAttempts": false,
+    "howManyAttempts": 1,
+    "showCorrectAnswers": "immediately",
+    "accessCode": "",
+    "oneQuestionAtTime": true,
+    "webcamRequired": false,
+    "lockQuestionsAfterAnswering": false,
+    "dueDate": "2024-05-13",
+    "availableDate": "2024-05-06",
+    "untilDate": "2024-05-14",
+    "published": true,
+    "questions": [
+      {
+        "_id": "Q101-1",
+        "title": "Specific Impulse",
+        "type": "MULTIPLE_CHOICE",
+        "points": 10,
+        "question": "What is the unit of specific impulse?",
+        "choices": [
+          { "_id": "Q101-1a", "text": "Newtons", "correct": false },
+          { "_id": "Q101-1b", "text": "Seconds", "correct": true },
+          { "_id": "Q101-1c", "text": "Kilograms", "correct": false },
+          { "_id": "Q101-1d", "text": "Meters per second", "correct": false }
+        ],
+        "blanks": []
+      },
+      {
+        "_id": "Q101-2",
+        "title": "Thrust Direction",
+        "type": "TRUE_FALSE",
+        "points": 10,
+        "question": "Rocket engines generate thrust by expelling mass in the opposite direction of travel.",
+        "choices": [],
+        "correctAnswer": true,
+        "blanks": []
+      },
+      {
+        "_id": "Q101-3",
+        "title": "Propellant",
+        "type": "FILL_IN_BLANK",
+        "points": 10,
+        "question": "The most common oxidizer used in liquid rocket engines is liquid ______.",
+        "choices": [],
+        "blanks": ["oxygen", "o2"]
+      }
+    ]
+  },
+  {
+    "_id": "Q201",
+    "title": "Aerodynamics Basics",
+    "course": "RS102",
+    "description": "Quiz covering fundamental aerodynamics concepts.",
+    "quizType": "GRADED_QUIZ",
+    "points": 20,
+    "assignmentGroup": "QUIZZES",
+    "shuffleAnswers": true,
+    "timeLimit": 15,
+    "multipleAttempts": true,
+    "howManyAttempts": 2,
+    "showCorrectAnswers": "immediately",
+    "accessCode": "",
+    "oneQuestionAtTime": true,
+    "webcamRequired": false,
+    "lockQuestionsAfterAnswering": false,
+    "dueDate": "2024-05-15",
+    "availableDate": "2024-05-08",
+    "untilDate": "2024-05-16",
+    "published": true,
+    "questions": [
+      {
+        "_id": "Q201-1",
+        "title": "Lift Formula",
+        "type": "MULTIPLE_CHOICE",
+        "points": 10,
+        "question": "Which factor does NOT directly appear in the lift equation?",
+        "choices": [
+          { "_id": "Q201-1a", "text": "Air density", "correct": false },
+          { "_id": "Q201-1b", "text": "Velocity squared", "correct": false },
+          { "_id": "Q201-1c", "text": "Wing temperature", "correct": true },
+          { "_id": "Q201-1d", "text": "Lift coefficient", "correct": false }
+        ],
+        "blanks": []
+      },
+      {
+        "_id": "Q201-2",
+        "title": "Supersonic Flow",
+        "type": "TRUE_FALSE",
+        "points": 10,
+        "question": "Supersonic flow occurs when the Mach number exceeds 1.",
+        "choices": [],
+        "correctAnswer": true,
+        "blanks": []
+      }
+    ]
+  },
+  {
+    "_id": "Q301",
+    "title": "Orbital Mechanics Quiz",
+    "course": "RS103",
+    "description": "Test your understanding of orbital mechanics and spacecraft systems.",
+    "quizType": "GRADED_QUIZ",
+    "points": 20,
+    "assignmentGroup": "QUIZZES",
+    "shuffleAnswers": false,
+    "timeLimit": 20,
+    "multipleAttempts": false,
+    "howManyAttempts": 1,
+    "showCorrectAnswers": "after_due",
+    "accessCode": "",
+    "oneQuestionAtTime": false,
+    "webcamRequired": false,
+    "lockQuestionsAfterAnswering": false,
+    "dueDate": "2024-05-25",
+    "availableDate": "2024-05-18",
+    "untilDate": "2024-05-26",
+    "published": false,
+    "questions": [
+      {
+        "_id": "Q301-1",
+        "title": "Kepler's First Law",
+        "type": "FILL_IN_BLANK",
+        "points": 10,
+        "question": "According to Kepler's first law, planets orbit the sun in ______ paths.",
+        "choices": [],
+        "blanks": ["elliptical", "ellipses", "ellipse"]
+      },
+      {
+        "_id": "Q301-2",
+        "title": "Geostationary Orbit",
+        "type": "TRUE_FALSE",
+        "points": 10,
+        "question": "A geostationary satellite orbits at the same rotational speed as the Earth.",
+        "choices": [],
+        "correctAnswer": true,
+        "blanks": []
+      }
+    ]
+  }]
